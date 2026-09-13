@@ -39,6 +39,11 @@ export function ApplicationBoard() {
         />
       </div>
 
+      {query.trim() && filtered.length === 0 ? (
+        <div className="card">
+          <div className={styles.noResults}>No applications match "{query.trim()}".</div>
+        </div>
+      ) : (
       <div className={styles.board}>
         {STATUS_ORDER.map((status) => {
           const apps = filtered.filter((app) => app.status === status);
@@ -47,8 +52,12 @@ export function ApplicationBoard() {
             <div key={status} className={styles.column}>
               <div className={styles.columnHeader} style={{ borderBottomColor: style.dot }}>
                 <span className={styles.columnDot} style={{ background: style.dot }} />
-                <span className={styles.columnTitle}>{status}</span>
-                <span className={styles.columnCount} style={{ background: style.bg, color: style.text }}>
+                <h2 className={styles.columnTitle}>{status}</h2>
+                <span
+                  className={styles.columnCount}
+                  style={{ background: style.bg, color: style.text }}
+                  aria-label={`${apps.length} applications`}
+                >
                   {apps.length}
                 </span>
               </div>
@@ -108,6 +117,7 @@ export function ApplicationBoard() {
           );
         })}
       </div>
+      )}
     </div>
   );
 }
