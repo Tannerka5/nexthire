@@ -1,16 +1,16 @@
 .nav {
-  border-bottom: 1px solid var(--color-border-soft);
   background: var(--color-bg);
   position: sticky;
   top: 0;
   z-index: 10;
+  box-shadow: 0 1px 0 rgba(38, 36, 31, 0.06);
 }
 
 .inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
+  height: 72px;
   gap: 24px;
 }
 
@@ -28,7 +28,7 @@
 .mark {
   width: 26px;
   height: 26px;
-  border-radius: 7px;
+  border-radius: 8px;
   background: var(--color-accent);
   color: #fdfdfb;
   display: flex;
@@ -48,7 +48,7 @@
 .link {
   display: inline-flex;
   align-items: center;
-  padding: 7px 14px;
+  padding: 8px 16px;
   border-radius: var(--radius-sm);
   font-size: 14px;
   font-weight: 500;
