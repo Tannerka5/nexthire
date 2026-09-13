@@ -61,7 +61,7 @@ export function Dashboard() {
 
       <div className="card">
         <div className={styles.spotlight}>
-          <span className={styles.eyebrow}>Next up</span>
+          <h2 className={styles.eyebrow}>Next up</h2>
           {top ? (
             <>
               <div className={styles.spotlightRow}>
@@ -103,7 +103,7 @@ export function Dashboard() {
 
       <div className="card">
         <div className={styles.narrative}>
-          <div className={styles.sectionHeading}>The bigger picture</div>
+          <h2 className={styles.sectionHeading}>The bigger picture</h2>
           <p className={styles.narrativeText}>
             You're tracking <strong>{total}</strong> application{total === 1 ? '' : 's'}
             {storyParts.length > 0 && (
@@ -142,7 +142,7 @@ export function Dashboard() {
         </div>
       </div>
 
-      <div className={`${styles.sectionHeading} ${styles.sectionHeadingTop}`}>Continue</div>
+      <h2 className={`${styles.sectionHeading} ${styles.sectionHeadingTop}`}>Continue</h2>
       <div className={styles.quickLinks}>
         <Link to="/applications" className={`card ${styles.quickLink}`}>
           <span className={styles.quickLinkTitle}>All applications →</span>

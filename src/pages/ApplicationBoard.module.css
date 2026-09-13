@@ -7,7 +7,7 @@
 }
 
 .header {
-  padding: 48px 0 32px;
+  padding: 52px 0 36px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -39,6 +39,7 @@
 .search:focus {
   outline: none;
   border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
 }
 
 .board {
@@ -56,6 +57,19 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+
+@media (max-width: 640px) {
+  .board {
+    scroll-snap-type: x mandatory;
+  }
+
+  .column {
+    flex: 0 0 86%;
+    min-width: 0;
+    max-width: 86%;
+    scroll-snap-align: start;
+  }
 }
 
 .columnHeader {
@@ -93,17 +107,18 @@
   padding: 4px 2px;
 }
 
+.noResults {
+  padding: 64px 24px;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
 .appCard {
   padding: 18px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: box-shadow 150ms ease, transform 150ms ease;
-}
-
-.appCard:hover {
-  box-shadow: 0 2px 4px rgba(38, 36, 31, 0.04), 0 16px 32px rgba(38, 36, 31, 0.08);
-  transform: translateY(-2px);
 }
 
 .company {
@@ -176,4 +191,5 @@
 .statusSelect:focus {
   outline: none;
   border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
 }

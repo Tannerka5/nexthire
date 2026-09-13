@@ -7,7 +7,7 @@
 
   --color-text: #26241f;
   --color-text-secondary: #6f6a5f;
-  --color-text-tertiary: #9c9587;
+  --color-text-tertiary: #736e64;
 
   --color-accent: #3e6259;
   --color-accent-strong: #2c4a42;
@@ -37,9 +37,9 @@
   --color-overdue-bg: #fbeae3;
   --color-overdue-edge: #c2603f;
 
-  --color-soon-text: #8a6a2e;
-  --color-soon-bg: #f6eedd;
-  --color-soon-edge: #b9903f;
+  --color-soon-text: #96501c;
+  --color-soon-bg: #f6e9da;
+  --color-soon-edge: #c17d3a;
 
   --color-upcoming-text: #52605e;
   --color-upcoming-bg: #eceae4;
