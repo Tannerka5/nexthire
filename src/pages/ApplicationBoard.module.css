@@ -1,13 +1,13 @@
 .page {
   width: 100%;
-  max-width: 1320px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 24px;
-  padding-bottom: 64px;
+  padding: 0 32px;
+  padding-bottom: 72px;
 }
 
 .header {
-  padding: 40px 0 24px;
+  padding: 48px 0 32px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -28,7 +28,7 @@
 .search {
   width: 240px;
   max-width: 100%;
-  padding: 9px 12px;
+  padding: 10px 14px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-border);
   background: var(--color-surface);
@@ -43,30 +43,27 @@
 
 .board {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   align-items: flex-start;
   overflow-x: auto;
-  padding-bottom: 12px;
+  padding: 4px 4px 16px;
 }
 
 .column {
-  flex: 1 1 200px;
-  min-width: 200px;
+  flex: 1 1 215px;
+  min-width: 215px;
   max-width: 260px;
-  background: var(--color-surface-muted);
-  border: 1px solid var(--color-border-soft);
-  border-radius: var(--radius-lg);
-  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 18px;
 }
 
 .columnHeader {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 0 2px 4px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--color-border);
 }
 
 .columnDot {
@@ -77,7 +74,7 @@
 }
 
 .columnTitle {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   flex: 1;
@@ -86,71 +83,70 @@
 .columnCount {
   font-size: 12px;
   font-weight: 600;
-  color: var(--color-text-tertiary);
-  background: var(--color-surface);
   border-radius: 999px;
-  padding: 2px 8px;
+  padding: 3px 10px;
 }
 
 .columnEmpty {
   font-size: 13px;
   color: var(--color-text-tertiary);
-  padding: 8px 2px;
+  padding: 4px 2px;
 }
 
 .appCard {
-  padding: 12px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+  transition: box-shadow 150ms ease, transform 150ms ease;
+}
+
+.appCard:hover {
+  box-shadow: 0 2px 4px rgba(38, 36, 31, 0.04), 0 16px 32px rgba(38, 36, 31, 0.08);
+  transform: translateY(-2px);
 }
 
 .company {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--color-text);
+  line-height: 1.35;
 }
 
 .role {
   font-size: 13px;
   color: var(--color-text-secondary);
+  line-height: 1.45;
+  margin-top: 2px;
 }
 
-.metaRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.tag {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  background: var(--color-surface-muted);
-  border-radius: 999px;
-  padding: 3px 8px;
+.meta {
+  font-size: 12.5px;
+  color: var(--color-text-tertiary);
 }
 
 .reference {
-  font-size: 12px;
+  font-size: 12.5px;
   color: var(--color-accent-strong);
   background: var(--color-accent-soft);
   border-radius: var(--radius-sm);
-  padding: 6px 8px;
-  line-height: 1.4;
+  padding: 10px 12px;
+  line-height: 1.55;
 }
 
 .nextAction {
-  font-size: 12px;
+  font-size: 12.5px;
   color: var(--color-text-secondary);
   border-top: 1px solid var(--color-border-soft);
-  padding-top: 8px;
-  line-height: 1.4;
+  padding-top: 12px;
+  line-height: 1.55;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .nextActionDue {
   font-weight: 600;
-  color: var(--color-overdue-text);
 }
 
 .cardFooter {
@@ -158,22 +154,22 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .appliedDate {
-  font-size: 11px;
+  font-size: 11.5px;
   color: var(--color-text-tertiary);
 }
 
 .statusSelect {
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 500;
   color: var(--color-text-secondary);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+  border: 1px solid transparent;
   border-radius: var(--radius-sm);
-  padding: 4px 6px;
+  padding: 6px 8px;
   cursor: pointer;
 }
 

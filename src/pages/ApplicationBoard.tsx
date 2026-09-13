@@ -3,7 +3,9 @@ import { useApplications } from '../context/ApplicationsContext';
 import { STATUS_ORDER } from '../types';
 import type { Status } from '../types';
 import { STATUS_STYLES } from '../utils/statusStyles';
-import { describeDueDate, formatDate } from '../utils/date';
+import { bucketForDiff } from '../utils/priority';
+import { BUCKET_STYLES } from '../utils/urgencyStyles';
+import { daysFromToday, describeDueDate, formatDate } from '../utils/date';
 import styles from './ApplicationBoard.module.css';
 
 export function ApplicationBoard() {
@@ -43,10 +45,12 @@ export function ApplicationBoard() {
           const style = STATUS_STYLES[status];
           return (
             <div key={status} className={styles.column}>
-              <div className={styles.columnHeader}>
+              <div className={styles.columnHeader} style={{ borderBottomColor: style.dot }}>
                 <span className={styles.columnDot} style={{ background: style.dot }} />
                 <span className={styles.columnTitle}>{status}</span>
-                <span className={styles.columnCount}>{apps.length}</span>
+                <span className={styles.columnCount} style={{ background: style.bg, color: style.text }}>
+                  {apps.length}
+                </span>
               </div>
 
               {apps.length === 0 ? (
@@ -59,9 +63,8 @@ export function ApplicationBoard() {
                       <div className={styles.role}>{app.role}</div>
                     </div>
 
-                    <div className={styles.metaRow}>
-                      <span className={styles.tag}>{app.location}</span>
-                      <span className={styles.tag}>via {app.source}</span>
+                    <div className={styles.meta}>
+                      {app.location} · via {app.source}
                     </div>
 
                     {app.referenceName && (
@@ -73,7 +76,12 @@ export function ApplicationBoard() {
 
                     {app.nextAction && app.nextActionDate && (
                       <div className={styles.nextAction}>
-                        <div className={styles.nextActionDue}>{describeDueDate(app.nextActionDate)}</div>
+                        <div
+                          className={styles.nextActionDue}
+                          style={{ color: BUCKET_STYLES[bucketForDiff(daysFromToday(app.nextActionDate))].text }}
+                        >
+                          {describeDueDate(app.nextActionDate)}
+                        </div>
                         <div>{app.nextAction}</div>
                       </div>
                     )}

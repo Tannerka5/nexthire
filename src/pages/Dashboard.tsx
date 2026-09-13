@@ -1,25 +1,53 @@
+import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { useApplications } from '../context/ApplicationsContext';
 import { STATUS_ORDER } from '../types';
+import { StatusBadge } from '../components/StatusBadge';
 import { STATUS_STYLES } from '../utils/statusStyles';
 import { getPrioritizedItems } from '../utils/priority';
+import { BUCKET_STYLES } from '../utils/urgencyStyles';
+import { describeDueDate } from '../utils/date';
 import styles from './Dashboard.module.css';
 
 export function Dashboard() {
-  const { applications } = useApplications();
+  const { applications, completeAction } = useApplications();
 
   const total = applications.length;
-  const active = applications.filter((app) => app.status !== 'Rejected').length;
   const interviewing = applications.filter((app) => app.status === 'Interview').length;
   const offers = applications.filter((app) => app.status === 'Offer').length;
+  const rejected = applications.filter((app) => app.status === 'Rejected').length;
 
   const prioritized = getPrioritizedItems(applications);
   const needsAttention = prioritized.filter((item) => item.bucket !== 'Upcoming').length;
+  const top = prioritized[0];
 
   const counts = STATUS_ORDER.map((status) => ({
     status,
     count: applications.filter((app) => app.status === status).length,
   }));
+
+  const storyParts: ReactNode[] = [];
+  if (interviewing > 0) {
+    storyParts.push(
+      <span key="interviewing">
+        <strong>{interviewing}</strong> at the interview stage
+      </span>,
+    );
+  }
+  if (offers > 0) {
+    storyParts.push(
+      <span key="offers">
+        <strong>{offers}</strong> with an offer on the table
+      </span>,
+    );
+  }
+  if (rejected > 0) {
+    storyParts.push(
+      <span key="rejected">
+        <strong>{rejected}</strong> that didn't pan out
+      </span>,
+    );
+  }
 
   return (
     <div className={`container ${styles.page}`}>
@@ -31,37 +59,66 @@ export function Dashboard() {
         </p>
       </div>
 
-      <div className={styles.statGrid}>
-        <div className="card">
-          <div className={styles.statTile}>
-            <span className={styles.statNumber}>{total}</span>
-            <span className={styles.statLabel}>Total applications</span>
-          </div>
-        </div>
-        <Link to="/priorities" className={`card ${styles.statTileLink}`}>
-          <div className={`${styles.statTile} ${styles.statTileHighlight}`}>
-            <span className={styles.statNumber}>{needsAttention}</span>
-            <span className={styles.statLabel}>Need attention now</span>
-            <span className={styles.statLink}>View priorities →</span>
-          </div>
-        </Link>
-        <div className="card">
-          <div className={styles.statTile}>
-            <span className={styles.statNumber}>{interviewing}</span>
-            <span className={styles.statLabel}>In interview stage</span>
-          </div>
-        </div>
-        <div className="card">
-          <div className={styles.statTile}>
-            <span className={styles.statNumber}>{offers}</span>
-            <span className={styles.statLabel}>Active offers</span>
-          </div>
+      <div className="card">
+        <div className={styles.spotlight}>
+          <span className={styles.eyebrow}>Next up</span>
+          {top ? (
+            <>
+              <div className={styles.spotlightRow}>
+                <div>
+                  <div className={styles.spotlightCompany}>{top.application.company}</div>
+                  <div className={styles.spotlightRole}>{top.application.role}</div>
+                </div>
+                <StatusBadge status={top.application.status} />
+              </div>
+              <p className={styles.spotlightDue} style={{ color: BUCKET_STYLES[top.bucket].text }}>
+                {describeDueDate(top.application.nextActionDate as string)}
+              </p>
+              <p className={styles.spotlightAction}>{top.application.nextAction}</p>
+              <div className={styles.spotlightActions}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => completeAction(top.application.id)}
+                >
+                  Mark as done
+                </button>
+                <Link to="/priorities" className="btn btn-ghost">
+                  {needsAttention > 1 ? `See ${needsAttention - 1} more →` : 'View priorities →'}
+                </Link>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className={styles.spotlightCaughtUp}>
+                You're all caught up — nothing needs attention right now.
+              </p>
+              <Link to="/applications" className="btn btn-ghost">
+                Browse your applications →
+              </Link>
+            </>
+          )}
         </div>
       </div>
 
       <div className="card">
-        <div className={styles.overview}>
-          <div className={styles.sectionHeading}>Where things stand · {active} active of {total}</div>
+        <div className={styles.narrative}>
+          <div className={styles.sectionHeading}>The bigger picture</div>
+          <p className={styles.narrativeText}>
+            You're tracking <strong>{total}</strong> application{total === 1 ? '' : 's'}
+            {storyParts.length > 0 && (
+              <>
+                {' — '}
+                {storyParts.map((part, index) => (
+                  <span key={index}>
+                    {index > 0 && (index === storyParts.length - 1 ? ', and ' : ', ')}
+                    {part}
+                  </span>
+                ))}
+              </>
+            )}
+            . {rejected > 0 ? "That's a normal shape for a search this size." : "Off to a solid start."}
+          </p>
           <div className={styles.bar}>
             {counts.map(({ status, count }) =>
               count === 0 ? null : (
@@ -85,9 +142,7 @@ export function Dashboard() {
         </div>
       </div>
 
-      <div className={styles.sectionHeading} style={{ marginTop: 32 }}>
-        Jump to
-      </div>
+      <div className={`${styles.sectionHeading} ${styles.sectionHeadingTop}`}>Continue</div>
       <div className={styles.quickLinks}>
         <Link to="/applications" className={`card ${styles.quickLink}`}>
           <span className={styles.quickLinkTitle}>All applications →</span>
