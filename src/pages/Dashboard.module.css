@@ -3,7 +3,7 @@
 }
 
 .hero {
-  padding: 56px 0 40px;
+  padding: 56px 0 36px;
   max-width: 640px;
 }
 
@@ -19,56 +19,6 @@
   line-height: 1.55;
 }
 
-.statGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-bottom: 44px;
-}
-
-.statTile {
-  padding: 18px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  text-decoration: none;
-  color: inherit;
-  transition: border-color 120ms ease, transform 120ms ease;
-}
-
-.statTileLink:hover {
-  border-color: var(--color-accent);
-}
-
-.statTileHighlight {
-  background: var(--color-accent-soft);
-  border-color: var(--color-accent);
-}
-
-.statNumber {
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
-}
-
-.statTileHighlight .statNumber {
-  color: var(--color-accent-strong);
-}
-
-.statLabel {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--color-text-secondary);
-}
-
-.statLink {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--color-accent-strong);
-  margin-top: 2px;
-}
-
 .sectionHeading {
   font-size: 13px;
   font-weight: 600;
@@ -78,9 +28,82 @@
   margin-bottom: 16px;
 }
 
-.overview {
-  padding: 24px;
-  margin-bottom: 24px;
+.sectionHeadingTop {
+  margin-top: 8px;
+}
+
+.spotlight {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent-strong);
+}
+
+.spotlightRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.spotlightCompany {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.spotlightRole {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+.spotlightDue {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.spotlightAction {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  max-width: 520px;
+}
+
+.spotlightActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.spotlightCaughtUp {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.narrative {
+  padding: 28px 32px;
+}
+
+.narrativeText {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-text);
+  margin-bottom: 22px;
+  max-width: 620px;
 }
 
 .bar {
@@ -90,7 +113,7 @@
   border-radius: 999px;
   overflow: hidden;
   background: var(--color-surface-muted);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .barSegment {
@@ -157,22 +180,27 @@
   line-height: 1.5;
 }
 
-@media (max-width: 860px) {
-  .statGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.page > .card {
+  margin-bottom: 20px;
+}
 
+@media (max-width: 860px) {
   .quickLinks {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 480px) {
-  .statGrid {
-    grid-template-columns: 1fr;
-  }
-
   .headline {
     font-size: 27px;
+  }
+
+  .spotlight,
+  .narrative {
+    padding: 22px 20px;
+  }
+
+  .spotlightCompany {
+    font-size: 19px;
   }
 }

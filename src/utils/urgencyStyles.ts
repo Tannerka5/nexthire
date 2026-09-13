@@ -12,18 +12,18 @@ export const BUCKET_STYLES: Record<UrgencyBucket, UrgencyStyle> = {
     text: 'var(--color-overdue-text)',
     bg: 'var(--color-overdue-bg)',
     edge: 'var(--color-overdue-edge)',
-    description: 'Past due — handle these first',
+    description: 'Worth a look when you have a moment',
   },
   'Due Soon': {
     text: 'var(--color-soon-text)',
     bg: 'var(--color-soon-bg)',
     edge: 'var(--color-soon-edge)',
-    description: 'Due within 2 days',
+    description: 'Coming up in the next 2 days',
   },
   Upcoming: {
     text: 'var(--color-upcoming-text)',
     bg: 'var(--color-upcoming-bg)',
     edge: 'var(--color-upcoming-edge)',
-    description: 'On the horizon',
+    description: 'Not urgent yet',
   },
 };

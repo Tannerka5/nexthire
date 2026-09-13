@@ -11,13 +11,18 @@ export interface PrioritizedItem {
   diff: number;
 }
 
+export function bucketForDiff(diff: number): UrgencyBucket {
+  if (diff < 0) return 'Overdue';
+  if (diff <= 2) return 'Due Soon';
+  return 'Upcoming';
+}
+
 export function getPrioritizedItems(applications: Application[]): PrioritizedItem[] {
   return applications
     .filter((app) => app.nextActionDate && app.status !== 'Rejected')
     .map((app) => {
       const diff = daysFromToday(app.nextActionDate as string);
-      const bucket: UrgencyBucket = diff < 0 ? 'Overdue' : diff <= 2 ? 'Due Soon' : 'Upcoming';
-      return { application: app, bucket, diff };
+      return { application: app, bucket: bucketForDiff(diff), diff };
     })
     .sort((a, b) => a.diff - b.diff);
 }

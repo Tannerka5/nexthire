@@ -3,7 +3,9 @@ import { useApplications } from '../context/ApplicationsContext';
 import { STATUS_ORDER } from '../types';
 import type { Status } from '../types';
 import { STATUS_STYLES } from '../utils/statusStyles';
-import { describeDueDate, formatDate } from '../utils/date';
+import { bucketForDiff } from '../utils/priority';
+import { BUCKET_STYLES } from '../utils/urgencyStyles';
+import { daysFromToday, describeDueDate, formatDate } from '../utils/date';
 import styles from './ApplicationBoard.module.css';
 
 export function ApplicationBoard() {
@@ -73,7 +75,12 @@ export function ApplicationBoard() {
 
                     {app.nextAction && app.nextActionDate && (
                       <div className={styles.nextAction}>
-                        <div className={styles.nextActionDue}>{describeDueDate(app.nextActionDate)}</div>
+                        <div
+                          className={styles.nextActionDue}
+                          style={{ color: BUCKET_STYLES[bucketForDiff(daysFromToday(app.nextActionDate))].text }}
+                        >
+                          {describeDueDate(app.nextActionDate)}
+                        </div>
                         <div>{app.nextAction}</div>
                       </div>
                     )}

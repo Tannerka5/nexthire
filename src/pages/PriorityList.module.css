@@ -3,7 +3,7 @@
 }
 
 .header {
-  padding: 40px 0 28px;
+  padding: 44px 0 32px;
   max-width: 640px;
 }
 
@@ -19,14 +19,15 @@
 }
 
 .bucket {
-  margin-bottom: 28px;
+  margin-bottom: 36px;
 }
 
 .bucketHeader {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
 }
 
 .bucketDot {
@@ -38,21 +39,40 @@
 
 .bucketTitle {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .bucketCount {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text-tertiary);
+}
+
+.toggle {
+  margin-left: auto;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease;
+}
+
+.toggle:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent-strong);
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 
 .item {
@@ -60,7 +80,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 16px 18px;
+  padding: 20px 22px;
   border-left-width: 4px;
   border-left-style: solid;
   flex-wrap: wrap;
@@ -69,7 +89,7 @@
 .itemMain {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   min-width: 240px;
   flex: 1 1 320px;
 }
@@ -92,14 +112,14 @@
 }
 
 .dueLabel {
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 12.5px;
+  font-weight: 600;
 }
 
 .actionText {
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--color-text-secondary);
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .itemActions {
@@ -107,7 +127,7 @@
 }
 
 .emptyState {
-  padding: 48px 24px;
+  padding: 56px 24px;
   text-align: center;
   color: var(--color-text-secondary);
 }
